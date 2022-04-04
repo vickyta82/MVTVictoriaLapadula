@@ -1,14 +1,11 @@
+from multiprocessing import context
 from django.http import HttpResponse
-from django.template import Template, Context
+from django.template import Template, Context, loader
 
 def home_page(request):
     return HttpResponse("Welcome to Your Phone Book!")
 
 def family_members(request):
-    file = open(r"C:\Users\vlapa\Desktop\Python\MVTVictoriaLapadula\MVTVL\MVTVL\templates\family.html", 'r')
-    template = Template(file.read())
-    file. close()
-    context = Context()
-    document = template.render(context)
+    template = loader.get_template("family.html")
+    document = template.render() 
     return HttpResponse(document)
-
